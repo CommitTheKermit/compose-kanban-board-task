@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -64,7 +63,7 @@ fun KanbanBoardCard(headerText: String, content: String, tagList: List<String> =
         ) {
             tagList.forEachIndexed { index, it ->
                 if (index < 5)
-                    CustomChip(text = it)
+                    CustomChip(text = if (it.length > 5) it.substring(0, 5) else it)
 
             }
         }

@@ -29,8 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-@Preview
-fun KanbanBoardCard() {
+fun KanbanBoardCard(headerText: String, content: String, tagList: List<String> = listOf(), accountName: String) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
@@ -40,7 +39,7 @@ fun KanbanBoardCard() {
             .padding(all = 17.dp),
     ) {
         Text(
-            text = "LazyColumn 컴포넌트 구현",
+            text = headerText,
             fontSize = 16.sp,
             letterSpacing = 0.3.sp,
             lineHeight = 24.sp,
@@ -48,25 +47,26 @@ fun KanbanBoardCard() {
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth(),
         )
-        Text(
-            text = "새로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-            fontSize = 14.sp,
-            letterSpacing = 0.15.sp,
-            lineHeight = 20.sp,
-            fontWeight = FontWeight.W400,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.fillMaxWidth(),
-        )
+        if (content.isNotEmpty())
+            Text(
+                text = content,
+                fontSize = 14.sp,
+                letterSpacing = 0.15.sp,
+                lineHeight = 20.sp,
+                fontWeight = FontWeight.W400,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.fillMaxWidth(),
+            )
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            CustomChip(text = "너무너무")
-            CustomChip(text = "긴 태그")
-            CustomChip(text = "최대로")
-            CustomChip(text = "5자까지")
-            CustomChip(text = "5개제한임")
+            tagList.forEachIndexed { index, it ->
+                if (index < 5)
+                    CustomChip(text = it)
+
+            }
         }
         HorizontalDivider()
         Row(
@@ -82,15 +82,13 @@ fun KanbanBoardCard() {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "다이노",
+                text = accountName,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
         }
-
     }
 }
-
 
 @Composable
 fun CustomChip(text: String) {

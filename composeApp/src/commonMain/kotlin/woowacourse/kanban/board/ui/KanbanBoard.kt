@@ -25,6 +25,8 @@ fun KanbanBoardCard() {
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
             .width(286.dp)
+            .background(color = Color(0xffffffff), shape = RoundedCornerShape(16.dp))
+            .border(color = Color(0xffE5E7Eb), width = 1.dp, shape = RoundedCornerShape(16.dp))
             .padding(all = 17.dp),
     ) {
         Text(

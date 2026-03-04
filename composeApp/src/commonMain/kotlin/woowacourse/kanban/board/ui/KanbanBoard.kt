@@ -3,13 +3,16 @@ package woowacourse.kanban.board.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -48,5 +51,28 @@ fun KanbanBoardCard() {
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth(),
         )
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+        ) {
+            CustomChip(text = "너무너무")
+            CustomChip(text = "긴 태그")
+            CustomChip(text = "최대로")
+            CustomChip(text = "5자까지")
+            CustomChip(text = "5개제한임")
+        }
+    }
+}
+
+
+@Composable
+fun CustomChip(text: String) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .background(color = Color(0xfff3f4f6), shape = RoundedCornerShape(16.dp))
+            .padding(vertical = 5.dp, horizontal = 8.dp),
+    ) {
+        Text(text = text, fontWeight = FontWeight.W400, fontSize = 12.sp)
     }
 }

@@ -6,10 +6,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -61,6 +68,26 @@ fun KanbanBoardCard() {
             CustomChip(text = "5자까지")
             CustomChip(text = "5개제한임")
         }
+        HorizontalDivider()
+        Row(
+            modifier = Modifier
+                .padding(vertical = 10.dp)
+                .fillMaxWidth(),
+        ) {
+            Icon(
+                imageVector = Icons.Default.AccountCircle,
+                contentDescription = "프로필기본값",
+                modifier = Modifier.size(24.dp),
+                tint = Color(0xff838383),
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "다이노",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+
     }
 }
 

@@ -10,7 +10,7 @@
   - Compose UI Testing을 활용하여 1단계의 기능 요구 사항을 테스트한다.
 
 ## 기능 목록
- - [ ] KanbanBoardCard의 매개변수를 KanbanCardData로 변경
+ - [x] KanbanBoardCard의 매개변수를 KanbanCardData로 변경
  - [ ] 비즈니스 로직을 도메인 모델로 분리
  - [ ] 단위 테스트 추가
  - [ ] UI 컴포넌트에서 비즈니스 로직 제거

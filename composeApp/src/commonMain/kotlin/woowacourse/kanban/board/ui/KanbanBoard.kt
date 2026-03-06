@@ -3,7 +3,6 @@ package woowacourse.kanban.board.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -33,12 +31,7 @@ import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.model.KanbanCardData
 
 @Composable
-fun KanbanBoardCard(
-    headerText: String,
-    content: String,
-    tagList: List<String> = listOf(),
-    accountName: String,
-) {
+fun KanbanBoardCard(data: KanbanCardData) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
@@ -57,7 +50,7 @@ fun KanbanBoardCard(
             .padding(all = 17.dp),
     ) {
         Text(
-            text = headerText,
+            text = data.headerText,
             fontSize = 16.sp,
             letterSpacing = 0.3.sp,
             lineHeight = 24.sp,
@@ -65,9 +58,9 @@ fun KanbanBoardCard(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth(),
         )
-        if (content.isNotEmpty())
+        if (data.content.isNotEmpty())
             Text(
-                text = content,
+                text = data.content,
                 fontSize = 14.sp,
                 letterSpacing = 0.15.sp,
                 lineHeight = 20.sp,
@@ -80,7 +73,7 @@ fun KanbanBoardCard(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            tagList.forEachIndexed { index, it ->
+            data.tagList.forEachIndexed { index, it ->
                 if (index < 5)
                     CustomChip(
                         text = if (it.length > 5) it.substring(
@@ -104,33 +97,11 @@ fun KanbanBoardCard(
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = accountName,
+                text = data.accountName,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
         }
-    }
-}
-
-@Composable
-fun CustomChip(text: String) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .background(
-                color = Color(0xfff3f4f6),
-                shape = RoundedCornerShape(16.dp),
-            )
-            .padding(
-                vertical = 5.dp,
-                horizontal = 8.dp,
-            ),
-    ) {
-        Text(
-            text = text,
-            fontWeight = FontWeight.W400,
-            fontSize = 12.sp,
-        )
     }
 }
 
@@ -186,9 +157,6 @@ internal class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardD
 @Preview
 fun KanbanCardPreview(@PreviewParameter(KanbanBoardPreviewProvider::class) data: KanbanCardData) {
     KanbanBoardCard(
-        headerText = data.headerText,
-        content = data.content,
-        tagList = data.tagList,
-        accountName = data.accountName,
+        data = data,
     )
 }

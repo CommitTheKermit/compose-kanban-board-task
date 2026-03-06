@@ -1,40 +1,103 @@
-This is a Kotlin Multiplatform project targeting Android, Desktop (JVM).
+# 2단계 - 칸반 보드 태스크(리팩터링)
 
-* [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./composeApp/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./composeApp/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./composeApp/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## 기능 요구 사항
 
-### Build and Run Android Application
+비즈니스 로직과 UI 로직을 분리한다.
 
-To build and run the development version of the Android app, use the run configuration from the run widget
-in your IDE’s toolbar or build it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:assembleDebug
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:assembleDebug
-  ```
+## 프로그래밍 요구 사항
+- 단위 테스트만으로도 충분한 로직과, UI 테스트가 필요한 영역을 구분한다.
+  - 핵심 비즈니스 로직을 가지는 객체를 분리해 단위 테스트를 진행한다.
+  - Compose UI Testing을 활용하여 1단계의 기능 요구 사항을 테스트한다.
 
-### Build and Run Desktop (JVM) Application
+## 기능 목록
+ - [x] KanbanBoardCard의 매개변수를 KanbanCardData로 변경
+ - [x] 비즈니스 로직을 도메인 모델로 분리
+ - [x] 단위 테스트 추가
+ - [ ] UI 테스트 추가
 
-To build and run the development version of the desktop app, use the run configuration from the run widget
-in your IDE’s toolbar or run it directly from the terminal:
-- on macOS/Linux
-  ```shell
-  ./gradlew :composeApp:run
-  ```
-- on Windows
-  ```shell
-  .\gradlew.bat :composeApp:run
-  ```
+## 단위 테스트
+### 검증 테스트
 
----
+- [x] 제목이 비어 있거나 공백만 있는 경우 생성 불가능
+- [x] 사용자의 이름은 비어있거나 공백인 경우 생성 불가능
+- [x] 유효한 데이터로 카드 생성 가능
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+### 태그 테스트
+
+- [x] 태그가 5개 초과하면 5개까지만 표시
+- [x] 태그 텍스트가 5자 초과하면 5자까지만 표시
+- [x] 태그가 비어있으면 displayTags도 비어있음
+
+## UI 테스트 시나리오
+
+- [ ] 모든 정보가 있는 경우
+    - 시나리오: 제목, 설명, 태그, 담당자가 모두 입력된 카드를 렌더링한다.
+    - 기대 결과: 모든 필드(제목, 설명, 태그 리스트, 담당자 이름)가 화면에 정상적으로 노출된다.
+- [ ] 설명이 없는 경우
+    - 시나리오: 제목, 태그, 담당자가 입력된 카드를 렌더링한다.
+    - 기대 결과 : 제목, 태그, 담당자가 화면에 정상적으로 노출된다.
+- [ ] 태그가 없는 경우
+    - 시나리오: 제목, 설명, 담당자가 입력된 카드를 렌더링한다.
+    - 기대 결과 : 제목, 설명, 담당자가 화면에 정상적으로 노출된다.
+- [ ] 설명과 태그 둘 다 없는 경우
+    - 시나리오: 제목, 담당자가 입력된 카드를 렌더링한다.
+    - 기대 결과 : 제목, 설명, 담당자가 화면에 정상적으로 노출된다.
+- [ ] 태그 5개 초과시 5개까지 노출
+    - 시나리오: 제목, 설명, 태그, 담당자를 입력하되 태그 리스트에 6개의 태그를 할당한다.
+    - 기대 결과 : 모든 필드가 화면에 정상적으로 노출되고 태그 리스트는 5개만 노출된다.
+- [ ] 태그 텍스트가 5자 초과시 잘린 텍스트 노출
+    - 시나리오: 제목, 설명, 태그, 담당자를 입력하되 태그 내용에 5자를 초과한 내용을 입력한다.
+    - 기대 결과 : 모든 필드가 화면에 정상적으로 노출되고 태그 내용은 5자까지만 노출된다.
+
+
+
+# 칸반 보드 태스크(카드)
+
+## 기능 요구 사항
+
+디자인 시안을 참고하여 칸반 보드용 태스크 카드를 구현한다.
+
+## 구현할 기능 목록
+
+### 카드 레이아웃
+
+- [x] 카드 배경과 테두리 및 둥근 모서리 적용
+- [x] 카드 내부 요소 간 세로 간격 및 패딩 적용
+- [x] 카드 고정 너비 설정
+- [x] 카드 파라미터 추가
+
+### 제목
+
+- [x] 제목 텍스트 표시
+- [x] 제목은 최대 1줄까지 표시하고 초과 시 오버플로우 처리
+
+### 본문(설명)
+
+- [x] 본문 텍스트 표시
+- [x] 본문은 최대 2줄까지 표시하고 초과 시 오버플로우 처리
+- [x] 본문이 비어있을 경우 표시하지 않음
+
+### 칩
+
+- [x] 커스텀 칩 컴포넌트 구현
+- [x] FlowRow를 활용한 태그 목록 배치
+- [x] 태그는 최대 5개까지만 표시
+- [x] 태그 텍스트는 최대 5자까지만 표시
+
+### 구분선
+
+- [x] 태그와 계정 정보 사이에 수평 구분선 표시
+
+### 계정 정보
+
+- [x] Material Design 아이콘 활용한 프로필 아이콘 표시
+- [x] 아이콘과 이름 사이 간격 적용
+- [x] 담당자 이름은 최대 1줄까지 표시하고 초과 시 오버플로우 처리
+
+### 프리뷰
+
+- [x] 기본 카드 프리뷰 (제목 + 본문 + 태그 + 계정)
+- [x] 본문 없는 카드 프리뷰
+- [x] 태그 없는 카드 프리뷰
+- [x] 본문/태그 없는 카드 프리뷰
+- [x] 최대 글자 수 초과 카드 프리뷰 (긴 제목, 긴 본문, 5자 초과 태그, 5개 초과 태그, 긴 담당자 이름)

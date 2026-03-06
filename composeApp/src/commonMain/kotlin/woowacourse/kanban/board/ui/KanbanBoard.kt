@@ -58,7 +58,7 @@ fun KanbanBoardCard(data: KanbanCardData) {
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.fillMaxWidth(),
         )
-        if (data.content.isNotEmpty())
+        if (data.hasContent) {
             Text(
                 text = data.content,
                 fontSize = 14.sp,
@@ -69,18 +69,16 @@ fun KanbanBoardCard(data: KanbanCardData) {
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.fillMaxWidth(),
             )
+        }
+
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
-            data.tagList.forEachIndexed { index, it ->
-                if (index < 5)
-                    CustomChip(
-                        text = if (it.length > 5) it.substring(
-                            0,
-                            5,
-                        ) else it,
-                    )
+            data.displayTags.forEach {
+                CustomChip(
+                    text = it,
+                )
             }
         }
         HorizontalDivider()

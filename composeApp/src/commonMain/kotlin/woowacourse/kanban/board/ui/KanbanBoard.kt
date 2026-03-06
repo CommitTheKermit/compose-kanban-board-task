@@ -29,13 +29,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun KanbanBoardCard(headerText: String, content: String, tagList: List<String> = listOf(), accountName: String) {
+fun KanbanBoardCard(
+    headerText: String,
+    content: String,
+    tagList: List<String> = listOf(),
+    accountName: String,
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
             .width(286.dp)
-            .background(color = Color(0xffffffff), shape = RoundedCornerShape(16.dp))
-            .border(color = Color(0xffE5E7Eb), width = 1.dp, shape = RoundedCornerShape(16.dp))
+            .background(
+                color = Color(0xffffffff),
+                shape = RoundedCornerShape(16.dp),
+            )
+            .border(
+                color = Color(0xffE5E7Eb),
+                width = 1.dp,
+                shape = RoundedCornerShape(16.dp),
+            )
             .padding(all = 17.dp),
     ) {
         Text(
@@ -64,8 +76,12 @@ fun KanbanBoardCard(headerText: String, content: String, tagList: List<String> =
         ) {
             tagList.forEachIndexed { index, it ->
                 if (index < 5)
-                    CustomChip(text = if (it.length > 5) it.substring(0, 5) else it)
-
+                    CustomChip(
+                        text = if (it.length > 5) it.substring(
+                            0,
+                            5,
+                        ) else it,
+                    )
             }
         }
         HorizontalDivider()
@@ -95,10 +111,20 @@ fun CustomChip(text: String) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .background(color = Color(0xfff3f4f6), shape = RoundedCornerShape(16.dp))
-            .padding(vertical = 5.dp, horizontal = 8.dp),
+            .background(
+                color = Color(0xfff3f4f6),
+                shape = RoundedCornerShape(16.dp),
+            )
+            .padding(
+                vertical = 5.dp,
+                horizontal = 8.dp,
+            ),
     ) {
-        Text(text = text, fontWeight = FontWeight.W400, fontSize = 12.sp)
+        Text(
+            text = text,
+            fontWeight = FontWeight.W400,
+            fontSize = 12.sp,
+        )
     }
 }
 
@@ -108,11 +134,13 @@ fun KanbanBoard() {
     KanbanBoardCard(
         headerText = "Lazy Column 컴포넌트 구현",
         content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-        tagList = listOf("컴포넌트", "성능"),
+        tagList = listOf(
+            "컴포넌트",
+            "성능",
+        ),
         accountName = "다이노",
     )
 }
-
 
 @Composable
 @Preview(showBackground = true)
@@ -120,11 +148,13 @@ fun ContentlessKanbanBoard() {
     KanbanBoardCard(
         headerText = "Lazy Column 컴포넌트 구현",
         content = "",
-        tagList = listOf("컴포넌트", "성능"),
+        tagList = listOf(
+            "컴포넌트",
+            "성능",
+        ),
         accountName = "다이노",
     )
 }
-
 
 @Composable
 @Preview(showBackground = true)
@@ -137,7 +167,6 @@ fun TaglessKanbanBoard() {
     )
 }
 
-
 @Composable
 @Preview(showBackground = true)
 fun EmptyKanbanBoard() {
@@ -149,14 +178,20 @@ fun EmptyKanbanBoard() {
     )
 }
 
-
 @Composable
 @Preview(showBackground = true)
 fun MaxKanbanBoard() {
     KanbanBoardCard(
         headerText = "너무너무 긴 제목은 한 줄까지만 노출너무너무 긴 제목은 한 줄까지만 노출",
         content = "너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노",
-        tagList = listOf("너무너무", "긴 태그", "최대로", "5자까지진짜로", "5개제한임", "6개"),
+        tagList = listOf(
+            "너무너무",
+            "긴 태그",
+            "최대로",
+            "5자까지진짜로",
+            "5개제한임",
+            "6개",
+        ),
         accountName = "너무너무너무 긴 담당자도 한 줄너무너무너무 긴 담당자도 한 줄",
     )
 }

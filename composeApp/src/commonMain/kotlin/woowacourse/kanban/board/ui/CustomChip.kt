@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,7 +26,8 @@ fun CustomChip(text: String) {
             .padding(
                 vertical = 5.dp,
                 horizontal = 8.dp,
-            ),
+            )
+            .testTag("tag"),
     ) {
         Text(
             text = text,

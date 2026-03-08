@@ -107,7 +107,7 @@ fun KanbanBoardCard(data: KanbanCardData) {
     }
 }
 
-internal class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardData> {
+private class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardData> {
     override val values = sequenceOf(
         KanbanCardData(
             headerText = "Lazy Column 컴포넌트 구현",
@@ -157,7 +157,7 @@ internal class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardD
 
 @Composable
 @Preview
-fun KanbanCardPreview(@PreviewParameter(KanbanBoardPreviewProvider::class) data: KanbanCardData) {
+private fun KanbanCardPreview(@PreviewParameter(KanbanBoardPreviewProvider::class) data: KanbanCardData) {
     KanbanBoardCard(
         data = data,
     )

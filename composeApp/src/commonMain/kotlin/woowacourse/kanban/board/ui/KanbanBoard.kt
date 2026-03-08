@@ -1,21 +1,15 @@
 package woowacourse.kanban.board.ui
 
+import AccountInfo
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -74,36 +68,9 @@ fun KanbanBoardCard(data: KanbanCardData) {
             )
         }
 
-        FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.testTag("tagRow"),
-        ) {
-            data.displayTags.forEach {
-                CustomChip(
-                    text = it,
-                )
-            }
-        }
+        ChipRow(displayTags = data.displayTags)
         HorizontalDivider()
-        Row(
-            modifier = Modifier
-                .padding(vertical = 10.dp)
-                .fillMaxWidth(),
-        ) {
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = "프로필기본값",
-                modifier = Modifier.size(24.dp),
-                tint = Color(0xff838383),
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = data.accountName,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-        }
+        AccountInfo(accountName = data.accountName)
     }
 }
 

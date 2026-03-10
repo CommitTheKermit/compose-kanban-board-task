@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.constants.BORDER_COLOR
 import woowacourse.kanban.board.model.KanbanCardData
 
 @Composable
@@ -35,10 +36,10 @@ fun KanbanBoardCard(data: KanbanCardData) {
                 shape = RoundedCornerShape(16.dp),
             )
             .background(
-                color = Color(0xffffffff),
+                color = Color.White,
             )
             .border(
-                color = Color(0xffE5E7Eb),
+                color = Color(BORDER_COLOR),
                 width = 1.dp,
                 shape = RoundedCornerShape(16.dp),
             )

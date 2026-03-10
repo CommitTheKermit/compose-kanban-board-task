@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.constants.PROFILE_TINT_COLOR
 
 @Composable
 fun AccountInfo(accountName: String) {
@@ -25,7 +26,7 @@ fun AccountInfo(accountName: String) {
             imageVector = Icons.Default.AccountCircle,
             contentDescription = "프로필기본값",
             modifier = Modifier.size(24.dp),
-            tint = Color(0xff838383),
+            tint = Color(PROFILE_TINT_COLOR),
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(

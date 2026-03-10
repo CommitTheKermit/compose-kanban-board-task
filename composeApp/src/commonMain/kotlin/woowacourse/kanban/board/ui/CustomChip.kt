@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.constants.TAG_BG
 
 @Composable
 fun CustomChip(text: String) {
@@ -20,7 +21,7 @@ fun CustomChip(text: String) {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .background(
-                color = Color(0xfff3f4f6),
+                color = Color(TAG_BG),
                 shape = RoundedCornerShape(16.dp),
             )
             .padding(

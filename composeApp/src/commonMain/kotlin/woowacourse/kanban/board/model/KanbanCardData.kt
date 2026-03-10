@@ -4,10 +4,10 @@ class KanbanCardData(val headerText: String, val content: String, val tagList: L
     init {
         require(
             headerText.isNotEmpty() && headerText.trim().isNotEmpty(),
-        ) { "제목은 비거나 공백일 수 없습니다." }
+        ) { TITLE_ERROR }
         require(
             accountName.isNotEmpty() && accountName.trim().isNotEmpty(),
-        ) { "담당자 이름은 비거나 공백일 수 없습니다." }
+        ) { ACCOUNT_ERROR }
     }
 
     val displayTags: List<String> =

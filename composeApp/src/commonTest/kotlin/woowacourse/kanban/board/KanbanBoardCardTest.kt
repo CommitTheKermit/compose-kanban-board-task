@@ -9,7 +9,10 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.runComposeUiTest
 import kotlin.test.Test
+import woowacourse.kanban.board.model.Account
 import woowacourse.kanban.board.model.KanbanCardData
+import woowacourse.kanban.board.model.Tags
+import woowacourse.kanban.board.model.Title
 import woowacourse.kanban.board.ui.KanbanBoardCard
 
 class KanbanBoardCardTest {
@@ -19,12 +22,14 @@ class KanbanBoardCardTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
-                    headerText = "제목",
+                    title = Title("제목"),
                     content = "설명",
-                    tagList = listOf(
-                        "태그",
+                    tags = Tags(
+                        listOf(
+                            "태그",
+                        ),
                     ),
-                    accountName = "담당자명",
+                    account = Account("담당자명"),
                 ),
             )
         }
@@ -40,12 +45,14 @@ class KanbanBoardCardTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
-                    headerText = "제목",
+                    title = Title("제목"),
                     content = "",
-                    tagList = listOf(
-                        "태그",
+                    tags = Tags(
+                        listOf(
+                            "태그",
+                        ),
                     ),
-                    accountName = "담당자명",
+                    account = Account("담당자명"),
                 ),
             )
         }
@@ -58,10 +65,10 @@ class KanbanBoardCardTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
-                    headerText = "제목",
+                    title = Title("제목"),
                     content = "설명",
-                    tagList = emptyList(),
-                    accountName = "담당자명",
+                    tags = Tags(emptyList()),
+                    account = Account("담당자명"),
                 ),
             )
         }
@@ -74,17 +81,19 @@ class KanbanBoardCardTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
-                    headerText = "제목",
+                    title = Title("제목"),
                     content = "설명",
-                    tagList = listOf(
-                        "태그1",
-                        "태그2",
-                        "태그3",
-                        "태그4",
-                        "태그5",
-                        "태그6",
+                    tags = Tags(
+                        listOf(
+                            "태그1",
+                            "태그2",
+                            "태그3",
+                            "태그4",
+                            "태그5",
+                            "태그6",
+                        ),
                     ),
-                    accountName = "담당자명",
+                    account = Account("담당자명"),
                 ),
             )
         }
@@ -97,12 +106,14 @@ class KanbanBoardCardTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
-                    headerText = "제목",
+                    title = Title("제목"),
                     content = "설명",
-                    tagList = listOf(
-                        "다섯글자가넘어가는태그내용",
+                    tags = Tags(
+                        listOf(
+                            "다섯글자가넘어가는태그내용",
+                        ),
                     ),
-                    accountName = "담당자명",
+                    account = Account("담당자명"),
                 ),
             )
         }

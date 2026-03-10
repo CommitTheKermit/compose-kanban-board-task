@@ -24,7 +24,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.constants.BORDER_COLOR
+import woowacourse.kanban.board.model.Account
 import woowacourse.kanban.board.model.KanbanCardData
+import woowacourse.kanban.board.model.Tags
+import woowacourse.kanban.board.model.Title
 
 @Composable
 fun KanbanBoardCard(data: KanbanCardData) {
@@ -46,7 +49,7 @@ fun KanbanBoardCard(data: KanbanCardData) {
             .padding(all = 17.dp),
     ) {
         Text(
-            text = data.headerText,
+            text = data.title.headerText,
             fontSize = 16.sp,
             letterSpacing = 0.3.sp,
             lineHeight = 24.sp,
@@ -65,60 +68,65 @@ fun KanbanBoardCard(data: KanbanCardData) {
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.fillMaxWidth()
                     .testTag("content"),
-
             )
         }
 
-        ChipRow(displayTags = data.displayTags)
+        ChipRow(displayTags = data.tags.displayTags)
         HorizontalDivider()
-        AccountInfo(accountName = data.accountName)
+        AccountInfo(accountName = data.account.accountName)
     }
 }
 
 private class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardData> {
     override val values = sequenceOf(
         KanbanCardData(
-            headerText = "Lazy Column 컴포넌트 구현",
+            title = Title("Lazy Column 컴포넌트 구현"),
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-            tagList = listOf(
-                "컴포넌트",
-                "성능",
+            tags = Tags(
+                listOf(
+                    "컴포넌트",
+                    "성능",
+                ),
             ),
-            accountName = "다이노",
+            account = Account("다이노"),
         ),
         KanbanCardData(
-            headerText = "Lazy Column 컴포넌트 구현",
+            title = Title("Lazy Column 컴포넌트 구현"),
             content = "",
-            tagList = listOf(
-                "컴포넌트",
-                "성능",
+            tags = Tags(
+                listOf(
+                    "컴포넌트",
+                    "성능",
+                ),
             ),
-            accountName = "다이노",
+            account = Account("다이노"),
         ),
         KanbanCardData(
-            headerText = "Lazy Column 컴포넌트 구현",
+            title = Title("Lazy Column 컴포넌트 구현"),
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
-            tagList = listOf(),
-            accountName = "다이노",
+            tags = Tags(listOf()),
+            account = Account("다이노"),
         ),
         KanbanCardData(
-            headerText = "Lazy Column 컴포넌트 구현",
+            title = Title("Lazy Column 컴포넌트 구현"),
             content = "",
-            tagList = listOf(),
-            accountName = "다이노",
+            tags = Tags(listOf()),
+            account = Account("다이노"),
         ),
         KanbanCardData(
-            headerText = "너무너무 긴 제목은 한 줄까지만 노출너무너무 긴 제목은 한 줄까지만 노출",
+            title = Title("너무너무 긴 제목은 한 줄까지만 노출너무너무 긴 제목은 한 줄까지만 노출"),
             content = "너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노너무너무너무 긴 설명은 두 줄까지만 노출하고 말줄임표로 처리합니다 두 줄까지만 노",
-            tagList = listOf(
-                "너무너무",
-                "긴 태그",
-                "최대로",
-                "5자까지진짜로",
-                "5개제한임",
-                "6개",
+            tags = Tags(
+                listOf(
+                    "너무너무",
+                    "긴 태그",
+                    "최대로",
+                    "5자까지진짜로",
+                    "5개제한임",
+                    "6개",
+                ),
             ),
-            accountName = "너무너무너무 긴 담당자도 한 줄너무너무너무 긴 담당자도 한 줄",
+            account = Account("너무너무너무 긴 담당자도 한 줄너무너무너무 긴 담당자도 한 줄"),
         ),
     )
 }

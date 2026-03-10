@@ -13,9 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.lang.constant.ConstantDescs.DEFAULT_NAME
 import woowacourse.kanban.board.constants.TAG_BG
+import woowacourse.kanban.board.model.Tags
 
 @Composable
 fun ChipRow(displayTags: List<String>) {
@@ -53,4 +58,25 @@ fun CustomChip(text: String) {
             fontSize = 12.sp,
         )
     }
+}
+
+class TagsPreviewParameterProvider : PreviewParameterProvider<Tags> {
+    override val values = sequenceOf(
+        Tags(
+            tagList = listOf(
+                "너무너무",
+                "긴 태그",
+                "최대로",
+                "5자까지진짜로",
+                "5개제한임",
+                "6개",
+            ),
+        ),
+    )
+}
+
+@Composable
+@Preview
+private fun TagsPreview(@PreviewParameter(TagsPreviewParameterProvider::class) data: Tags) {
+    ChipRow(displayTags = data.displayTags)
 }

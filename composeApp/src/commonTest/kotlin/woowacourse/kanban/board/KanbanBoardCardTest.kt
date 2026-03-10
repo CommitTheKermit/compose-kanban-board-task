@@ -18,7 +18,7 @@ import woowacourse.kanban.board.ui.KanbanBoardCard
 class KanbanBoardCardTest {
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `모든 정보가 있는 경우`() = runComposeUiTest {
+    fun `칸반 보드 카드에 모든 정보가 있는 경우`() = runComposeUiTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
@@ -41,7 +41,7 @@ class KanbanBoardCardTest {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `설명이 없는 경우`() = runComposeUiTest {
+    fun `칸반 보드 카드에 설명이 없는 경우`() = runComposeUiTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
@@ -61,7 +61,7 @@ class KanbanBoardCardTest {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `태그가 없는 경우`() = runComposeUiTest {
+    fun `칸반 보드 카드에 태그가 없는 경우`() = runComposeUiTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
@@ -77,7 +77,7 @@ class KanbanBoardCardTest {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `태그 5개 초과시 5개까지 노출`() = runComposeUiTest {
+    fun `칸반 보드 카드에 태그 5개 초과시 5개까지 노출`() = runComposeUiTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(
@@ -102,7 +102,7 @@ class KanbanBoardCardTest {
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun `태그 텍스트가 5자 초과시 잘린 텍스트 노출`() = runComposeUiTest {
+    fun `칸반 보드 카드에 태그 텍스트가 5자 초과시 잘린 텍스트 노출`() = runComposeUiTest {
         setContent {
             KanbanBoardCard(
                 data = KanbanCardData(

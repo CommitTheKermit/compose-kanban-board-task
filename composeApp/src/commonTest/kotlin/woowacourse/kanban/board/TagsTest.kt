@@ -4,7 +4,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import woowacourse.kanban.board.model.Tags
 
-class TagTest {
+class TagsTest {
 
     @Test
     fun `태그가 5개 초과하면 5개까지만 표시`() {

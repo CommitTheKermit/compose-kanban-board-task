@@ -11,35 +11,35 @@ import woowacourse.kanban.board.model.Title
 class KanbanBoardDataTest {
 
     @Test
-    fun `제목이 비어 있는 경우 생성 불가능`() {
+    fun `제목이 비어 있는 경우 칸반 보드 카드 생성 불가능`() {
         assertFailsWith<IllegalArgumentException> {
             Title("")
         }
     }
 
     @Test
-    fun `제목이 공백인 경우 생성 불가능`() {
+    fun `제목이 공백인 경우 칸반 보드 카드 생성 불가능`() {
         assertFailsWith<IllegalArgumentException> {
             Title(" ")
         }
     }
 
     @Test
-    fun `담당자 이름이 비어 있는 경우 생성 불가능`() {
+    fun `담당자 이름이 비어 있는 경우 칸반 보드 카드 생성 불가능`() {
         assertFailsWith<IllegalArgumentException> {
             Account("")
         }
     }
 
     @Test
-    fun `담당자 이름이 공백인 경우 생성 불가능`() {
+    fun `담당자 이름이 공백인 경우 칸반 보드 카드 생성 불가능`() {
         assertFailsWith<IllegalArgumentException> {
             Account(" ")
         }
     }
 
     @Test
-    fun `비어 있지 않고 공백도 아닌 데이터로 카드 생성`() {
+    fun `비어 있지 않고 공백도 아닌 데이터로 칸반 보드 카드 생성`() {
         val data = KanbanCardData(
             title = Title("제목"),
             content = "설명",

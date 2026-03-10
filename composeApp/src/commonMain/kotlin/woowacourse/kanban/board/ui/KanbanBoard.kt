@@ -48,27 +48,9 @@ fun KanbanBoardCard(data: KanbanCardData) {
             )
             .padding(all = 17.dp),
     ) {
-        Text(
-            text = data.title.headerText,
-            fontSize = 16.sp,
-            letterSpacing = 0.3.sp,
-            lineHeight = 24.sp,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.fillMaxWidth(),
-        )
+        CardTitle(headerText = data.title.headerText)
         if (data.hasContent) {
-            Text(
-                text = data.content,
-                fontSize = 14.sp,
-                letterSpacing = 0.15.sp,
-                lineHeight = 20.sp,
-                fontWeight = FontWeight.W400,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.fillMaxWidth()
-                    .testTag("content"),
-            )
+            CardContent(content = data.content)
         }
 
         ChipRow(displayTags = data.tags.displayTags)
@@ -136,5 +118,33 @@ private class KanbanBoardPreviewProvider : PreviewParameterProvider<KanbanCardDa
 private fun KanbanCardPreview(@PreviewParameter(KanbanBoardPreviewProvider::class) data: KanbanCardData) {
     KanbanBoardCard(
         data = data,
+    )
+}
+
+@Composable
+fun CardTitle(modifier: Modifier = Modifier, headerText: String) {
+    Text(
+        text = headerText,
+        fontSize = 16.sp,
+        letterSpacing = 0.3.sp,
+        lineHeight = 24.sp,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.fillMaxWidth(),
+    )
+}
+
+@Composable
+fun CardContent(modifier: Modifier = Modifier, content: String) {
+    Text(
+        text = content,
+        fontSize = 14.sp,
+        letterSpacing = 0.15.sp,
+        lineHeight = 20.sp,
+        fontWeight = FontWeight.W400,
+        maxLines = 2,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier.fillMaxWidth()
+            .testTag("content"),
     )
 }
